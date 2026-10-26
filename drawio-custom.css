@@ -1,0 +1,125 @@
+/* draw.io Desktop custom theme
+   Paste into Extras > Configuration as the "css" value (one JSON string).
+   Size: use app zoom (--zoom 1.25 or the draw.io menu's Zoom In), not
+   font-size/width overrides; the Format panel positions controls in fixed
+   pixels, so resizing text alone makes them overlap.
+   Selectors use draw.io's own class names only (no nth-child paths or
+   tooltip text), so they survive updates and work in any language. */
+
+/* [1] Panels */
+
+.geMenubarContainer,
+.geToolbarContainer,
+.geTabContainer {
+    background: #000 !important;
+}
+
+.geSidebarContainer {
+    background: #111 !important;
+}
+
+/* Pasteboard: the area around the page (the page keeps its own color) */
+.geDiagramContainer {
+    background: #333 !important;
+}
+
+.geEditor > .geToolbarContainer {
+    border-bottom-width: 2px !important;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-color: light-dark(#000000, #666666) !important;
+}
+
+/* [2] Shapes sidebar */
+
+.geSidebarContainer .geTitle {
+    border-top: 3px double #6666 !important;
+}
+
+/* [3] Format panel */
+
+.geFormatContainer {
+    border-left-width: 2px !important;
+}
+
+.geFormatContainer .geCollapsibleTitle {
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+/* Black buttons, inputs and dropdowns. Style swatches (.geStyleButton) and
+   color buttons (.geColorBtn) are excluded so they keep their colors. */
+.geFormatContainer button:not(.geStyleButton):not(.geColorBtn),
+.geFormatContainer input:not([type="checkbox"]):not([type="color"]),
+.geFormatContainer select {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+/* Style properties table */
+
+table.geProperties {
+    border: 2px solid #fff5f5 !important;
+    border-collapse: collapse;
+}
+
+table.geProperties tr {
+    border-bottom: 1px solid #6666 !important;
+}
+
+/* [4] Dialogs */
+
+div.geDialog {
+    box-shadow: 0 4px 4px 4px #000 !important;
+}
+
+/* [5] Toolbar: center the buttons */
+
+.geToolbar {
+    justify-content: center;
+}
+
+/* [6] Bigger text-editing dialogs (Edit Style, Edit Diagram, Configuration).
+   :has(textarea) limits this to dialogs built around a text box, so small
+   dialogs like Edit Data and confirmations keep their normal size. */
+
+div.geDialog:has(textarea) {
+    width: min(50vw, 1500px) !important;
+    height: min(80vh, 1000px) !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+}
+
+/* [7] Wider, roomier Format panel.
+   draw.io 32.x sets the panel width in its stylesheet (240px), so the
+   width lives here. The contents are scaled by the same ratio so text,
+   controls and the gaps between them grow together without overlapping.
+   To change it, keep zoom = width / 240 (300px = 1.25, 360px = 1.5). */
+
+div.geFormatContainer:not(.mxWindowPane *) {
+    width: 360px !important;
+}
+
+div.geFormatContainer:not(.mxWindowPane *) > .geFormatContent {
+    zoom: 1.5;
+}
+
+/* Extra breathing room between rows and sections */
+
+.geFormatContainer .geFormatEntry {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+.geFormatContainer .geFormatSection {
+    padding-top: 8px !important;
+    padding-bottom: 14px !important;
+}
+
+/* Style / Text / Arrange tabs, sized to match */
+
+div.geFormatContainer:not(.mxWindowPane *) .geFormatTitle {
+    font-size: 17px;
+}
