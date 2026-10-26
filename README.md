@@ -49,6 +49,8 @@ python3 -c 'import json,sys; print(json.dumps(open(sys.argv[1]).read()))' drawio
 
 ## Known draw.io issue: tool windows don't reopen at launch
 
+Reported upstream as [jgraph/drawio#5823](https://github.com/jgraph/drawio/issues/5823).
+
 In 32.6.1, draw.io saves the Layers, Outline and Tags windows. But at startup it hides them again while it waits for a file to open, and saves them as closed. Their position and docking are kept, so after a file opens these shortcuts bring each window back exactly where you left it:
 
 | Window | macOS | Windows / Linux |
